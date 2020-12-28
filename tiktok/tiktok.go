@@ -11,7 +11,7 @@ import (
 	"strings"
 	"time"
 	
-	"ioutil"
+	"io/ioutil"
 
 	goquery "github.com/PuerkitoBio/goquery"
 )
