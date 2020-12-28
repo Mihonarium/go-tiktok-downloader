@@ -10,6 +10,8 @@ import (
 	"path"
 	"strings"
 	"time"
+	
+	"ioutil"
 
 	goquery "github.com/PuerkitoBio/goquery"
 )
