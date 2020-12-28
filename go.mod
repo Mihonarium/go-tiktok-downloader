@@ -1,4 +1,4 @@
-module github.com/pawanpaudel93/go-tiktok-downloader
+module github.com/Mihonarium/go-tiktok-downloader2
 
 go 1.15
 
