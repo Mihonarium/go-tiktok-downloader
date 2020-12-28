@@ -111,13 +111,13 @@ func (profile *Profile) setClient(jar *cookiejar.Jar) {
 }
 
 // Download - Download Tiktok video
-func (video *Video) Download() (string, error) {
+func (video *Video) Download() ([]byte, error) {
 	jar, _ := cookiejar.New(nil)
 	video.filePath = path.Join(video.BaseDIR, video.data.Author.UniqueID+"_"+video.data.ItemStruct.VideoID+".mp4")
 	URL := video.data.Video.URL
 	req, err := http.NewRequest("GET", URL, nil)
 	if err != nil {
-		return "", err
+		return nil, err
 	}
 	parsedURL, _ := url.Parse(URL)
 
@@ -128,13 +128,9 @@ func (video *Video) Download() (string, error) {
 	video.setClient(jar)
 	resp, err := video.httpClient.Do(req)
 	if err != nil {
-		return "", err
+		return nil, err
 	}
-	err = saveTiktok(video.filePath, resp)
-	if err != nil {
-		return "", err
-	}
-	return video.filePath, err
+	return ioutil.ReadAll(resp.Body)
 }
 
 // FetchInfo - Get Tiktok video Information.
